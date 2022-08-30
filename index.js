@@ -26,33 +26,34 @@ function changeBgImg(todays_data_weather){
 
                             /* Forecast */
 
-function dateToString(next_dates,i)
+function dateToString(date)
     {
-    let date = new Date(next_dates[i].dt*1000).toDateString();
-    return date;
+    let dateStr = new Date(date.dt*1000).toDateString();
+    return dateStr;
 }
 
  function dateToButton(next_dates,i){
-    $((".dateBtn" + i)).text(dateToString(next_dates,i));
+    $((".dateBtn" + i)).text(dateToString(next_dates[i]));
 } 
     
-function getNextDatesData(next_dates,i){
-    const meanValueTemp = (next_dates[i].temp.day + next_dates[i].temp.night) / 2;
-    const meanValueFeel = (next_dates[i].feels_like.day + next_dates[i].feels_like.night) / 2;
+function getNextDatesData(date){
+    const meanValueTemp = (date.temp.day + date.temp.night) / 2;
+    const meanValueFeel = (date.feels_like.day + date.feels_like.night) / 2;
 
     $ (".temperature-forecast").text(" ".concat("Temperature ", Math.round(meanValueTemp),"℃"));
     $(".feelsLike-forecast").text(" ".concat("Feeling ", Math.round(meanValueFeel), "℃"));
-    $(".humidity-forecast").text(" ".concat("Humidity ", next_dates[i].humidity, "%"));
-    $(".pressure-forecast").text(" ".concat("Pressure ", next_dates[i].pressure," hPa"));
-    $(".clouds-forecast").text(" ".concat("Clouds ", next_dates[i].clouds,"%"));
-    $(".wind-sp-forecast").text(" ".concat("Wind Speed ", next_dates[i].wind_speed ," m/sec"));
-    $(".wind-deg-forecast").text(" ".concat("Wind Direction ", next_dates[i].wind_deg ," deg"));
+    $(".humidity-forecast").text(" ".concat("Humidity ", date.humidity, "%"));
+    $(".pressure-forecast").text(" ".concat("Pressure ", date.pressure," hPa"));
+    $(".clouds-forecast").text(" ".concat("Clouds ", date.clouds,"%"));
+    $(".wind-sp-forecast").text(" ".concat("Wind Speed ", date.wind_speed ," m/sec"));
+    $(".wind-deg-forecast").text(" ".concat("Wind Direction ", date.wind_deg ," deg"));
     }
 
                                 /* API Images */
 
 function getImgFromApi(data,i){
 
+    console.log(i)
     const imgToday = data.current.weather[0].icon;
     const imgNextDays = data.daily[i].weather[0].icon;
     const imgUrlToday = "".concat("http://openweathermap.org/img/wn/",imgToday,"@2x.png");
@@ -64,15 +65,15 @@ function getImgFromApi(data,i){
 
 
                               /* Max Temp Chart */
-function maxTempChart(next_dates){
+function maxTempChart(dates){
   const ctx = $("#maxTempChart");
   const myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: [dateToString(next_dates,1), dateToString(next_dates,2), dateToString(next_dates,3), dateToString(next_dates,4), dateToString(next_dates,5), dateToString(next_dates,6), dateToString(next_dates,7)],
+        labels: [dateToString(dates[1]), dateToString(dates[2]), dateToString(dates[3]), dateToString(dates[4]), dateToString(dates[5]), dateToString(dates[6]), dateToString(dates[7])],
         datasets: [{
             label: 'Max Temperature',
-            data: [(Math.round(next_dates[0].temp.max)), (Math.round(next_dates[1].temp.max)), (Math.round(next_dates[2].temp.max)), (Math.round(next_dates[3].temp.max)), (Math.round(next_dates[4].temp.max)), (Math.round(next_dates[5].temp.max)), (Math.round(next_dates[6].temp.max))],
+            data: [(Math.round(dates[0].temp.max)), (Math.round(dates[1].temp.max)), (Math.round(dates[2].temp.max)), (Math.round(dates[3].temp.max)), (Math.round(dates[4].temp.max)), (Math.round(dates[5].temp.max)), (Math.round(dates[6].temp.max))],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
             ],
@@ -143,13 +144,13 @@ data.then(data => {
       for(let i=0; i<8; i++){
         dateToButton(data.daily,i);
         btnClick(i);
-        getImgFromApi(data,i);
     }
     maxTempChart(data.daily); 
     changeBgImg(data.current.weather);
     function btnClick(i){ 
         $((".dateBtn" + i)).click(function(){
-            getNextDatesData(data.daily,i);
+            getNextDatesData(data.daily[i]);
+            getImgFromApi(data,i);
         })};
 });    
         
