@@ -1,5 +1,4 @@
                         /* Data from API */
-
 const apiUrl = prompt("Please paste the API url");
 
 async function fetchData(url){
@@ -8,87 +7,56 @@ async function fetchData(url){
     return data;
 }
 
-
-$(".forecast-info").hide();
-
-
                         /* Current Weather Card */
-
-function getTodaysWeather(data){    
-        $ ("#current-temp").text(Math.round(data.current.temp) + " ");
-        $(".temp-feeling").text("Feeling " + Math.round(data.current.feels_like) + " ℃");
-        $(".humidity").text("Humidity " + data.current.humidity + " " + "%");
-        $(".pressure").text("Pressure " + data.current.pressure + " " + "hPa");
-        $(".clouds").text("Clouds " + data.current.clouds + " " + "%");
-        $(".wind-sp").text("Wind Speed " + data.current.wind_speed + " " + "m/sec")
-        $(".wind-deg").text("Wind Direction " + data.current.wind_deg + " " + "deg")
+function getTodaysWeather(todays_data){    
+        $ ("#current-temp").text(Math.round(todays_data.temp) + " ");
+        $(".temp-feeling").text(" ".concat("Feeling ", Math.round(todays_data.feels_like), "℃"));
+        $(".humidity").text(" ".concat("Humidity ", todays_data.humidity, "%"));
+        $(".pressure").text(" ".concat("Pressure ", todays_data.pressure, " hPa"));
+        $(".clouds").text(" ".concat("Clouds ", todays_data.clouds, "%"));
+        $(".wind-sp").text(" ".concat("Wind Speed ", todays_data.wind_speed, " m/sec"));
+        $(".wind-deg").text(" ".concat("Wind Direction ", todays_data.wind_deg, " deg"));
       }
-
-      $(".details").click(function(){
-        $("#weather-det").show();
-      })
-
 
                             /* Changing Gif */
     
-function changeImg(data){
-    if(data.current.weather[0].main === "Clouds"){
-        $("#temperature-card").css("background-image", "url(img/Clouds.gif)")
-    }else if(data.current.weather[0].main === "Rain"){
-        $("#temperature-card").css("background-image", "url(img/Rain.gif)")
-    }else if(data.current.weather[0].main === "Clear"){
-        $("#temperature-card").css("background-image", "url(img/Clear.gif)")
-    }
+function changeBgImg(todays_data_weather){
+    $("#temperature-card").css("background-image", "".concat(`url(img/${todays_data_weather[0].main}.gif)`))
 }
 
                             /* Forecast */
 
-function dateGenerator(data,i)
+function dateToString(next_dates,i)
     {
-     
-    var date = new Date(data.daily[i].dt*1000).toDateString();
+    let date = new Date(next_dates[i].dt*1000).toDateString();
     return date;
 }
 
-
- function btnDate(data,i){
-    $((".dateBtn" + i)).text(dateGenerator(data,i));
+ function dateToButton(next_dates,i){
+    $((".dateBtn" + i)).text(dateToString(next_dates,i));
 } 
     
-      
+function getNextDatesData(next_dates,i){
+    const meanValueTemp = (next_dates[i].temp.day + next_dates[i].temp.night) / 2;
+    const meanValueFeel = (next_dates[i].feels_like.day + next_dates[i].feels_like.night) / 2;
 
-
-$('*[class^="dateBtn"]').click(function(){
-
-    $(".weather-details-card").hide();
-    $("#temperature-card").hide();
-    $(".forecast-info").show();
-    $("#maxTempChart").hide();
-
-})
-
-
-function forecastData(data,i){
-    const meanValueTemp = (data.daily[i].temp.day + data.daily[i].temp.night) / 2;
-    const meanValueFeel = (data.daily[i].feels_like.day + data.daily[i].feels_like.night) / 2;
-  
-    $ (".temperature-forecast").text("Temperature " + Math.round(meanValueTemp) + " ℃");
-    $(".feelsLike-forecast").text("Feeling " + Math.round(meanValueFeel) + " ℃");
-    $(".humidity-forecast").text("Humidity " + data.daily[i].humidity + " " + "%");
-    $(".pressure-forecast").text("Pressure " + data.daily[i].pressure + " " + "hPa");
-    $(".clouds-forecast").text("Clouds " + data.daily[i].clouds + " " + "%");
-    $(".wind-sp-forecast").text("Wind Speed " + data.daily[i].wind_speed + " " + "m/sec")
-    $(".wind-deg-forecast").text("Wind Direction " + data.daily[i].wind_deg + " " + "deg")
+    $ (".temperature-forecast").text(" ".concat("Temperature ", Math.round(meanValueTemp),"℃"));
+    $(".feelsLike-forecast").text(" ".concat("Feeling ", Math.round(meanValueFeel), "℃"));
+    $(".humidity-forecast").text(" ".concat("Humidity ", next_dates[i].humidity, "%"));
+    $(".pressure-forecast").text(" ".concat("Pressure ", next_dates[i].pressure," hPa"));
+    $(".clouds-forecast").text(" ".concat("Clouds ", next_dates[i].clouds,"%"));
+    $(".wind-sp-forecast").text(" ".concat("Wind Speed ", next_dates[i].wind_speed ," m/sec"));
+    $(".wind-deg-forecast").text(" ".concat("Wind Direction ", next_dates[i].wind_deg ," deg"));
     }
 
                                 /* API Images */
 
-function imageSelector(data,i){
+function getImgFromApi(data,i){
 
     const imgToday = data.current.weather[0].icon;
     const imgNextDays = data.daily[i].weather[0].icon;
-    const imgUrlToday = "http://openweathermap.org/img/wn/" + imgToday + "@2x.png";
-    const imgUrlNext = "http://openweathermap.org/img/wn/" + imgNextDays + "@2x.png";
+    const imgUrlToday = "".concat("http://openweathermap.org/img/wn/",imgToday,"@2x.png");
+    const imgUrlNext = "".concat("http://openweathermap.org/img/wn/", imgNextDays,"@2x.png");
 
     $(".weather-img").attr("src", imgUrlToday);
     $(".forecast-img").attr("src", imgUrlNext);
@@ -96,15 +64,15 @@ function imageSelector(data,i){
 
 
                               /* Max Temp Chart */
-function maxTempChart(data){
+function maxTempChart(next_dates){
   const ctx = $("#maxTempChart");
   const myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: [dateGenerator(data,1), dateGenerator(data,2), dateGenerator(data,3), dateGenerator(data,4), dateGenerator(data,5), dateGenerator(data,6), dateGenerator(data,7)],
+        labels: [dateToString(next_dates,1), dateToString(next_dates,2), dateToString(next_dates,3), dateToString(next_dates,4), dateToString(next_dates,5), dateToString(next_dates,6), dateToString(next_dates,7)],
         datasets: [{
             label: 'Max Temperature',
-            data: [(Math.round(data.daily[0].temp.max)), (Math.round(data.daily[1].temp.max)), (Math.round(data.daily[2].temp.max)), (Math.round(data.daily[3].temp.max)), (Math.round(data.daily[4].temp.max)), (Math.round(data.daily[5].temp.max)), (Math.round(data.daily[6].temp.max))],
+            data: [(Math.round(next_dates[0].temp.max)), (Math.round(next_dates[1].temp.max)), (Math.round(next_dates[2].temp.max)), (Math.round(next_dates[3].temp.max)), (Math.round(next_dates[4].temp.max)), (Math.round(next_dates[5].temp.max)), (Math.round(next_dates[6].temp.max))],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
             ],
@@ -136,15 +104,9 @@ function maxTempChart(data){
         color: 'rgba(251, 251, 251)',
     }
 });}
- 
-$(".chart-btn").click(function(){
-    $("#maxTempChart").show();
-}) 
-
                                 /* Go Back Btn */
-
-      
- function goBack(){
+  
+ function goBackButton(){
     $(".go-back-btn").click(function(){
         $(".collapse-item").collapse('toggle');
         $(".forecast-info").hide();
@@ -152,29 +114,45 @@ $(".chart-btn").click(function(){
     })
  }                              
 
- goBack();
+ 
 
                                 /* Calling All */
+$(".forecast-info").hide();
+
+goBackButton();
+
+$(".details").click(function(){
+    $("#weather-det").show();
+    })
+    
+$('*[class^="dateBtn"]').click(function(){
+    $(".weather-details-card").hide();
+    $("#temperature-card").hide();
+    $(".forecast-info").show();
+    $("#maxTempChart").hide();
+})
+
+$(".chart-btn").click(function(){
+    $("#maxTempChart").show();
+}) 
 
 data = fetchData(apiUrl);
 data.then(data => {
-      getTodaysWeather(data);
-      $(".date").text(dateGenerator(data,0));
+      getTodaysWeather(data.current);
+      $(".date").text(dateToString(data.daily,0));
       for(let i=0; i<8; i++){
-        btnDate(data,i);
+        dateToButton(data.daily,i);
         btnClick(i);
-        imageSelector(data,i);
+        getImgFromApi(data,i);
     }
-    maxTempChart(data); 
-    changeImg(data);
+    maxTempChart(data.daily); 
+    changeBgImg(data.current.weather);
     function btnClick(i){ 
         $((".dateBtn" + i)).click(function(){
-           forecastData(data,i);
+            getNextDatesData(data.daily,i);
         })};
 });    
         
-
-
 
 
 
