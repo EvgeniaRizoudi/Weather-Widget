@@ -1,171 +1,184 @@
-$(".forecast-info").hide()
-            
-            
-            /* Date Function */
-            
-            function getOnlyDate(nextDays){
-                let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-                let months = ["January", "February", "March", "April", "May", "June",
-                            "July", "August", "September", "October", "November", "December"]
-               
-                let currentDate = new Date();
-                let day = days[currentDate.getDay()];
-                let date = currentDate.getDate();
-                let month = months[currentDate.getMonth()];
-                let year = currentDate.getFullYear();
-               
-                return day + " " + date + " " + month + " " + year + " "
-            }
-          
-            
-            
-            
-            
-            $(".date").text(getOnlyDate()); 
+                        /* Data from API */
+
+const apiUrl = prompt("Please paste the API url");
+
+async function fetchData(url){
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+}
 
 
+$(".forecast-info").hide();
 
 
-                
+                        /* Current Weather Card */
 
-                    /* API Info Display */
+function getTodaysWeather(data){    
+        $ ("#current-temp").text(Math.round(data.current.temp) + " ");
+        $(".temp-feeling").text("Feeling " + Math.round(data.current.feels_like) + " ℃");
+        $(".humidity").text("Humidity " + data.current.humidity + " " + "%");
+        $(".pressure").text("Pressure " + data.current.pressure + " " + "hPa");
+        $(".clouds").text("Clouds " + data.current.clouds + " " + "%");
+        $(".wind-sp").text("Wind Speed " + data.current.wind_speed + " " + "m/sec")
+        $(".wind-deg").text("Wind Direction " + data.current.wind_deg + " " + "deg")
+      }
 
-
-function getDataFromApi(){
-
-fetch ("https://api.openweathermap.org/data/2.5/onecall?lat=40.58725980318928&lon=22.948223362612612&exclude=hourly,minutely&appid=11b0499bd13ab56063de7565a440eb97&units=metric")
-.then(response =>{
-  return response.json();
-}).then(data =>{
-    
-                    /* Temperature */
-
-    $ ("#current-temp").text(Math.round(data.current.temp) + " ");
-    $(".temp-feeling").text("Feeling " + Math.round(data.current.feels_like) + " ℃");
-    $(".humidity").text("Humidity " + data.current.humidity + " " + "%");
-    $(".pressure").text("Pressure " + data.current.pressure + " " + "hPa");
-    $(".clouds").text("Clouds " + data.current.clouds + " " + "%");
-    $(".wind-sp").text("Wind Speed " + data.current.wind_speed + " " + "m/sec")
-    $(".wind-deg").text("Wind Direction " + data.current.wind_deg + " " + "deg")
- 
-  })}
-
-                    /* Image */
-
-
-function image(response){
-  fetch ("https://api.openweathermap.org/data/2.5/onecall?lat=40.58725980318928&lon=22.948223362612612&exclude=hourly,minutely&appid=11b0499bd13ab56063de7565a440eb97&units=metric"
-  ).then(response =>{
-
-    return response.json();
-
-  }).then(data =>{
-
-    const img = data.current.weather[0].icon;
-    const imgUrl = "http://openweathermap.org/img/wn/" + img + "@2x.png";
-    $(".weather-img").attr("src",imgUrl);
-  
-  })
-  }
- 
-                    /*Background-image*/
-    
-function bgImage(response){
-fetch ("https://api.openweathermap.org/data/2.5/onecall?lat=40.58725980318928&lon=22.948223362612612&exclude=hourly,minutely&appid=11b0499bd13ab56063de7565a440eb97&units=metric"
- ).then(response =>{
-                    
- return response.json();
-                    
- }).then(data =>{
-
-  if(data.current.weather[0].id >= 200 && data.current.weather[0].id <= 232){
-
-    $(".weather-details-card").css("background-image","url(" + "img/thunder.jpg" + ")");
-
-  }else if(data.current.weather[0].id >= 300 && data.current.weather[0].id <= 321 || data.current.weather[0].id >= 520 && data.current.weather[0].id <= 531){
-    
-    $(".weather-details-card").css("background-image","url(" + "img/thunder.jpg" + ")");
-
-  }else if(data.current.weather[0].id >= 500 && data.current.weather[0].id <= 531){
-    
-    $(".weather-details-card").css("background-image","url(" + "img/thunder.jpg" + ")");
-
-  }else if(data.current.weather[0].id >= 600 && data.current.weather[0].id <= 622){
-   
-    $(".weather-details-card").css("background-image","url(" + "img/thunder.jpg" + ")");
-
-  }else if(data.current.weather[0].id >= 700 && data.current.weather[0].id <= 781){
-    
-    $(".weather-details-card").css("background-image","url(" + "img/thunder.jpg" + ")");
-
-  }else if(data.current.weather[0].id === 800){
-   
-    $(".weather-details-card").css("background-image","url(" + "img/clear-sky.jpg" + ")");
- } else if(data.current.weather[0].id >= 801 && data.current.weather[0].id <= 804){
-    
-    $(".weather-details-card").css("background-image","url(" + "img/cloudy-sky.jpg" + ")");
-  
-  }})}
-
-  /*  function newTab(){
-    const forecastBtn = $(".btn")
-
-    $(document).ready(function(){
-      forecastBtn.click(function(){
-        $(".weather-details-card").slideUp();
+      $(".details").click(function(){
+        $("#weather-det").show();
       })
-    })
-
-   } */
-  
- 
 
 
+                            /* Changing Gif */
+    
+function changeImg(data){
+    if(data.current.weather[0].main === "Clouds"){
+        $("#temperature-card").css("background-image", "url(img/Clouds.gif)")
+    }else if(data.current.weather[0].main === "Rain"){
+        $("#temperature-card").css("background-image", "url(img/Rain.gif)")
+    }else if(data.current.weather[0].main === "Clear"){
+        $("#temperature-card").css("background-image", "url(img/Clear.gif)")
+    }
+}
 
-   function pickNewDate(response){
-  fetch ("https://api.openweathermap.org/data/2.5/onecall?lat=40.58725980318928&lon=22.948223362612612&exclude=hourly,minutely&appid=11b0499bd13ab56063de7565a440eb97&units=metric"
- ).then(response =>{
-                    
- return response.json();
-                    
- }).then(data =>{
-  
+                            /* Forecast */
 
- /*  const today = new Date()
-  const tomorrow = new Date(today)
-  tomorrow.setDate(tomorrow.getDate() + 1) */
+function dateGenerator(data,i)
+    {
+     
+    var date = new Date(data.daily[i].dt*1000).toDateString();
+    return date;
+}
 
- $(".dateBtn1").text();
- $(".dateBtn2").text(data.daily[1].dt);   
- $(".dateBtn3").text(data.daily[2].dt);
- $(".dateBtn4").text(data.daily[3].dt);
- $(".dateBtn5").text(data.daily[4].dt);
- $(".dateBtn6").text(data.daily[5].dt);
- $(".dateBtn7").text(data.daily[6].dt);   
- $('*[class^="dateBtn"]').click(function(){
 
-  $(".weather-details-card").slideUp();
-  $(".weather-details-card").replaceWith($(".forecast-info").show());
+ function btnDate(data,i){
+    $((".dateBtn" + i)).text(dateGenerator(data,i));
+} 
+    
+      
 
-  const meanValueTemp = (data.daily[0].temp.day + data.daily[0].temp.night) / 2
-  const meanValueFeel = (data.daily[0].feels_like.day + data.daily[0].feels_like.night) / 2
 
-  $ (".temperature-forecast").text("Temperature " + Math.round(meanValueTemp) + " ℃");
-  $(".feelsLike-forecast").text("Feeling " + Math.round(meanValueFeel) + " ℃");
-  $(".humidity-forecast").text("Humidity " + data.daily[0].humidity + " " + "%");
-  $(".pressure-forecast").text("Pressure " + data.daily[0].pressure + " " + "hPa");
-  $(".clouds-forecast").text("Clouds " + data.daily[0].clouds + " " + "%");
-  $(".wind-sp-forecast").text("Wind Speed " + data.daily[0].wind_speed + " " + "m/sec")
-  $(".wind-deg-forecast").text("Wind Direction " + data.daily[0].wind_deg + " " + "deg")
+$('*[class^="dateBtn"]').click(function(){
 
+    $(".weather-details-card").hide();
+    $("#temperature-card").hide();
+    $(".forecast-info").show();
+    $("#maxTempChart").hide();
 
 })
-})}
-
-var today = (new Date().toISOString().split('T')[0])+1;
-console.log(today);
 
 
+function forecastData(data,i){
+    const meanValueTemp = (data.daily[i].temp.day + data.daily[i].temp.night) / 2;
+    const meanValueFeel = (data.daily[i].feels_like.day + data.daily[i].feels_like.night) / 2;
+  
+    $ (".temperature-forecast").text("Temperature " + Math.round(meanValueTemp) + " ℃");
+    $(".feelsLike-forecast").text("Feeling " + Math.round(meanValueFeel) + " ℃");
+    $(".humidity-forecast").text("Humidity " + data.daily[i].humidity + " " + "%");
+    $(".pressure-forecast").text("Pressure " + data.daily[i].pressure + " " + "hPa");
+    $(".clouds-forecast").text("Clouds " + data.daily[i].clouds + " " + "%");
+    $(".wind-sp-forecast").text("Wind Speed " + data.daily[i].wind_speed + " " + "m/sec")
+    $(".wind-deg-forecast").text("Wind Direction " + data.daily[i].wind_deg + " " + "deg")
+    }
+
+                                /* API Images */
+
+function imageSelector(data,i){
+
+    const imgToday = data.current.weather[0].icon;
+    const imgNextDays = data.daily[i].weather[0].icon;
+    const imgUrlToday = "http://openweathermap.org/img/wn/" + imgToday + "@2x.png";
+    const imgUrlNext = "http://openweathermap.org/img/wn/" + imgNextDays + "@2x.png";
+
+    $(".weather-img").attr("src", imgUrlToday);
+    $(".forecast-img").attr("src", imgUrlNext);
+}
+
+
+                              /* Max Temp Chart */
+function maxTempChart(data){
+  const ctx = $("#maxTempChart");
+  const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [dateGenerator(data,1), dateGenerator(data,2), dateGenerator(data,3), dateGenerator(data,4), dateGenerator(data,5), dateGenerator(data,6), dateGenerator(data,7)],
+        datasets: [{
+            label: 'Max Temperature',
+            data: [(Math.round(data.daily[0].temp.max)), (Math.round(data.daily[1].temp.max)), (Math.round(data.daily[2].temp.max)), (Math.round(data.daily[3].temp.max)), (Math.round(data.daily[4].temp.max)), (Math.round(data.daily[5].temp.max)), (Math.round(data.daily[6].temp.max))],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 5
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                ticks: {
+                    color: 'rgba(251, 251, 251)'
+                },
+                grid: {
+                    display: false
+                },
+                beginAtZero: true,
+                max: 45  
+            },
+            x: {
+                ticks: {
+                    color: 'rgba(251, 251, 251)'
+                },
+                grid: {
+                    display: false
+                },
+            }
+        },
+        responsive: true,
+        color: 'rgba(251, 251, 251)',
+    }
+});}
+ 
+$(".chart-btn").click(function(){
+    $("#maxTempChart").show();
+}) 
+
+                                /* Go Back Btn */
+
+      
+ function goBack(){
+    $(".go-back-btn").click(function(){
+        $(".collapse-item").collapse('toggle');
+        $(".forecast-info").hide();
+        $("#temperature-card").show();  
+    })
+ }                              
+
+ goBack();
+
+                                /* Calling All */
+
+data = fetchData(apiUrl);
+data.then(data => {
+      getTodaysWeather(data);
+      $(".date").text(dateGenerator(data,0));
+      for(let i=0; i<8; i++){
+        btnDate(data,i);
+        btnClick(i);
+        imageSelector(data,i);
+    }
+    maxTempChart(data); 
+    changeImg(data);
+    function btnClick(i){ 
+        $((".dateBtn" + i)).click(function(){
+           forecastData(data,i);
+        })};
+});    
+        
+
+
+
+
+
+   
 
 
 
@@ -173,8 +186,11 @@ console.log(today);
 
 
 
-getDataFromApi();
-image();
-bgImage();
-imageNextDay();
-pickNewDate();
+
+ 
+
+
+
+
+
+

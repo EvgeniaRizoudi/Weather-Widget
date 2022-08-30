@@ -4,16 +4,17 @@
     padding: 0;
 }
 
+.mLeft{
+    margin-left: 2%;
+}
+
             /* Main styling classes */
- 
+
+
 .text-style{
     text-align: center;
     color: #E8F9FD;
     text-shadow: 4px 4px black;
-}
-
-.padding{
-    padding: 2% 5% 0% 5%;
 }
 
 .font-comfortaa{
@@ -22,15 +23,9 @@
 
             /* Temperature Card */
 
-.row{
-    padding-top:5%
-}
 
-.row > .temperature-card{
-    margin:5% 0% 0% 2%;
-    background-image: url(img/salonica-white-tower-hi\ \(1\).png);
+.row > #temperature-card{
     background-size: cover;
-    opacity: 0.8;
     border-radius: 15%;
 }
            
@@ -52,7 +47,6 @@
 
 .celcious{
     font-family: 'Barlow', sans-serif;
-    padding: 0% 2%;
     font-size: 3rem;
 }
 
@@ -67,55 +61,45 @@
 .temp-feeling{
     font-size: 1.4rem;
     font-weight: bold;
-    padding-bottom: 2%;
     color: rgb(251, 251, 251);
     text-shadow: 2px 2px black;
     text-emphasis-color: black;
 }
 
-            /* Weather Details Card */
-
-.row > .weather-details-card{
-    border-radius: 10%;
-}            
-
+.card-footer{
+ text-align: center;
+}
+            /* Weather Details Card */           
 
 
 
+.list-style{
+    list-style: none;
+}
 
-.weather-details-card, .forecast-info{
-    margin-left: 0%;
-    background-size: cover;
-    padding-top: 5%;
+ .row >.weather-details-card{
+    border-radius: 15%;
     text-align: start;
     align-items: center;
     font-size: 1.4rem;
     text-shadow:1px 1px #000000;
-}
+    background-color: #6ca4be;
+} 
 
-ul, .main-part{
-    background-color: #899197;
-    border-radius: 15%;
-    margin-bottom: 2%;
-    list-style: none;
-}
-
-.btn{
-    margin-bottom: 1%;
-}
 
             /* Forecast Card */
 
-.forecast-info{
-    margin-left: 5%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-content: center;
-    align-items: center; 
+.row >.forecast-info{
+    border-radius: 15%;
+    text-align: start;
+    align-items: center;
+    font-size: 1.4rem;
+    text-shadow:1px 1px #000000;
+    background-color: #6ca4be; 
 }
+            /* Max Temperature Chart */
 
-.forecast-info > ul{
-    font-size: 1.2rem;
-    text-shadow: none;
-} 
+#maxTempChart{
+    background-color: #6ca4be;
+    border-radius: 1%;
+}
