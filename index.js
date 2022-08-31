@@ -41,7 +41,7 @@ function dateToButton(next_dates, i) {
 function getNextDatesData(date) {
     const meanValueTemp = Math.round((date.temp.day + date.temp.night) / 2);
     const meanValueFeel = Math.round((date.feels_like.day + date.feels_like.night) / 2);
-    $(".temperature-forecast").text(`Temperature  ${meanValueTemp}℃`);
+    $(".temperature-forecast").text(`Temperature ${meanValueTemp}℃`);
     $(".feelsLike-forecast").text(`Feeling ${meanValueFeel}℃`);
     $(".humidity-forecast").text(`Humidity ${date.humidity}%`);
     $(".pressure-forecast").text(`Pressure ${date.pressure}hPa`);
@@ -125,16 +125,21 @@ function maxTempChart(dates) {
 /* Calling All: Invoking all the functions needed to run the widget*/
 $(".forecast-info").hide();
 
+/* Turns the user back to the main card, closing all the other open cards*/
 $(".go-back-btn").click(function () {
     $(".collapse-item").collapse('toggle');
     $(".forecast-info").hide();
     $("#temperature-card").show();
 })
 
+/* Displays the card with the current weather details*/
 $(".details").click(function () {
     $("#weather-det").show();
 })
 
+/* Displays the forecast for the corresponding date,
+ closing all the other open cards, 
+ except for the one with the other dates*/
 $('*[class^="dateBtn"]').click(function () {
     $(".weather-details-card").hide();
     $("#temperature-card").hide();
@@ -142,6 +147,7 @@ $('*[class^="dateBtn"]').click(function () {
     $("#maxTempChart").hide();
 })
 
+/* Displays the chart card*/
 $(".chart-btn").click(function () {
     $("#maxTempChart").show();
 })
