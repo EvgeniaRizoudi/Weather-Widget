@@ -1,64 +1,62 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-.mLeft{
+/* Main styling classes */
+
+.mLeft {
     margin-left: 2%;
 }
 
-            /* Main styling classes */
-
-
-.text-style{
+.text-style {
     text-align: center;
     color: #E8F9FD;
     text-shadow: 4px 4px black;
 }
 
-.font-comfortaa{
+.font-comfortaa {
     font-family: 'Comfortaa', cursive;
 }
 
-            /* Temperature Card */
+/* Temperature Card */
 
-
-.row > #temperature-card{
+.row > #temperature-card {
     background-size: cover;
     border-radius: 15%;
 }
-           
-#location{
+
+#location {
     font-size: 3rem;
 }
 
-.date{
+.date {
     font-family: 'Barlow', sans-serif;
     font-size: 1.2rem;
     font-weight: bold;
     text-shadow: 1px 1px black;
 }
 
-#current-temp{
+#current-temp {
     font-family: 'Barlow', sans-serif;
     font-size: 7rem;
 }
 
-.celcious{
+.celcious {
     font-family: 'Barlow', sans-serif;
     font-size: 3rem;
 }
 
-.temperature-details{
+.temperature-details {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
-.temp-feeling{
+.temp-feeling {
     font-size: 1.4rem;
     font-weight: bold;
     color: rgb(251, 251, 251);
@@ -66,40 +64,39 @@
     text-emphasis-color: black;
 }
 
-.card-footer{
- text-align: center;
+.card-footer {
+    text-align: center;
 }
-            /* Weather Details Card */           
 
+/* Weather Details Card */
 
-
-.list-style{
+.list-style {
     list-style: none;
 }
 
- .row >.weather-details-card{
+.row > .weather-details-card {
     border-radius: 15%;
     text-align: start;
     align-items: center;
     font-size: 1.4rem;
-    text-shadow:1px 1px #000000;
+    text-shadow: 1px 1px #000000;
     background-color: #6ca4be;
-} 
+}
 
+/* Forecast Card */
 
-            /* Forecast Card */
-
-.row >.forecast-info{
+.row > .forecast-info {
     border-radius: 15%;
     text-align: start;
     align-items: center;
     font-size: 1.4rem;
-    text-shadow:1px 1px #000000;
-    background-color: #6ca4be; 
+    text-shadow: 1px 1px #000000;
+    background-color: #6ca4be;
 }
-            /* Max Temperature Chart */
 
-#maxTempChart{
+/* Max Temperature Chart */
+
+#maxTempChart {
     background-color: #6ca4be;
     border-radius: 1%;
 }
