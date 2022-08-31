@@ -22,8 +22,7 @@ function getTodaysWeather(todays_data) {
 /* Changing Gif: Alters the background Gif according to the current weather*/
 function changeBgImg(todays_data_weather) {
     $("#temperature-card").css(
-        "background-image",
-        `url(img/${todays_data_weather[0].icon}.gif)`
+        "background-image",`url(img/${todays_data_weather[0].icon}.gif)`
     );
 }
 
@@ -53,19 +52,13 @@ function getNextDatesData(date) {
 
 /* API Images: Fetches the correct weather image from the API*/
 function getTodaysImgFromApi(data) {
-    const imgToday = data
-        .current
-        .weather[0]
-        .icon;
+    const imgToday = data.current.weather[0].icon;
     const imgUrlToday = `http://openweathermap.org/img/wn/${imgToday}@2x.png`;
     $(".weather-img").attr("src", imgUrlToday);
 }
 
 function getNextDaysImgFromApi(data, i) {
-    const imgNextDays = data
-        .daily[i]
-        .weather[0]
-        .icon;
+    const imgNextDays = data.daily[i].weather[0].icon;
     const imgUrlNext = `http://openweathermap.org/img/wn/${imgNextDays}@2x.png`;
     $(".forecast-img").attr("src", imgUrlNext);
 }
