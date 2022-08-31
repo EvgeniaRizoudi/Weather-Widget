@@ -1,5 +1,6 @@
 /* Data from API */
-const apiUrl = prompt("Please paste the API url");
+const apiKey = prompt("Please paste the API key");
+const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=40.58725980318928&lon=22.948223362612612&exclude=hourly,minutely&appid=${apiKey}&units=metric`
 
 async function fetchData(url){
     const response = await fetch(url);
@@ -101,8 +102,7 @@ function maxTempChart(dates){
     }
 });}
 /* Go Back Btn */
-  
-function goBackButton(){
+  function goBackButton(){
     $(".go-back-btn").click(function(){
         $(".collapse-item").collapse('toggle');
         $(".forecast-info").hide();
