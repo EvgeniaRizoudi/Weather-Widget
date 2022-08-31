@@ -21,7 +21,7 @@ function getTodaysWeather(todays_data){
                             /* Changing Gif */
     
 function changeBgImg(todays_data_weather){
-    $("#temperature-card").css("background-image", "".concat(`url(img/${todays_data_weather[0].main}.gif)`))
+    $("#temperature-card").css("background-image", "".concat(`url(img/${todays_data_weather[0].icon}.gif)`))
 }
 
                             /* Forecast */
@@ -51,15 +51,15 @@ function getNextDatesData(date){
 
                                 /* API Images */
 
-function getImgFromApi(data,i){
-
-    console.log(i)
+function getTodaysImgFromApi(data){
     const imgToday = data.current.weather[0].icon;
-    const imgNextDays = data.daily[i].weather[0].icon;
     const imgUrlToday = "".concat("http://openweathermap.org/img/wn/",imgToday,"@2x.png");
-    const imgUrlNext = "".concat("http://openweathermap.org/img/wn/", imgNextDays,"@2x.png");
+    $(".weather-img").attr("src", imgUrlToday); 
+}
 
-    $(".weather-img").attr("src", imgUrlToday);
+function getNextDaysImgFromApi(data,i){
+    const imgNextDays = data.daily[i].weather[0].icon;
+    const imgUrlNext = "".concat("http://openweathermap.org/img/wn/", imgNextDays,"@2x.png");
     $(".forecast-img").attr("src", imgUrlNext);
 }
 
@@ -140,17 +140,18 @@ $(".chart-btn").click(function(){
 data = fetchData(apiUrl);
 data.then(data => {
       getTodaysWeather(data.current);
-      $(".date").text(dateToString(data.daily,0));
+      $(".date").text(dateToString(data.current,0));
       for(let i=0; i<8; i++){
         dateToButton(data.daily,i);
         btnClick(i);
     }
+    getTodaysImgFromApi(data);
     maxTempChart(data.daily); 
     changeBgImg(data.current.weather);
     function btnClick(i){ 
         $((".dateBtn" + i)).click(function(){
             getNextDatesData(data.daily[i]);
-            getImgFromApi(data,i);
+            getNextDaysImgFromApi(data,i);
         })};
 });    
         
