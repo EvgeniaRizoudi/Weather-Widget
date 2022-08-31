@@ -40,8 +40,8 @@ function dateToButton(next_dates, i) {
 
 /*Pushes the desirable data to the corresponding HTML elements*/
 function getNextDatesData(date) {
-    const meanValueTemp = Math.round(date.temp.day + date.temp.night) / 2;
-    const meanValueFeel = Math.round(date.feels_like.day + date.feels_like.night) / 2;
+    const meanValueTemp = Math.round((date.temp.day + date.temp.night) / 2);
+    const meanValueFeel = Math.round((date.feels_like.day + date.feels_like.night) / 2);
     $(".temperature-forecast").text(`Temperature  ${meanValueTemp}℃`);
     $(".feelsLike-forecast").text(`Feeling ${meanValueFeel}℃`);
     $(".humidity-forecast").text(`Humidity ${date.humidity}%`);
