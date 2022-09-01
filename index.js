@@ -1,6 +1,6 @@
 /* Data from API: Placing the correct API key makes the widget functional*/
 const apiKey = prompt("Please paste the API key");
-const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=40.58725980318928&lon=22.948223362612612&exclude=hourly,minutely&appid=${apiKey}&units=metric`
+const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=40.58725980318928&lon=22.948223362612612&exclude=hourly,minutely&appid=${apiKey}&units=metric`;
 
 async function fetchData(url) {
     const response = await fetch(url);
@@ -90,8 +90,8 @@ function maxTempChart(dates) {
                         (Math.round(dates[5].temp.max)),
                         (Math.round(dates[6].temp.max))
                     ],
-                    borderColor: ['rgba(255, 99, 132, 1)'],
-                    borderWidth: 5
+                    borderColor: ['rgba(251, 251, 251)'],
+                    borderWidth: 2
                 }
             ]
         },
