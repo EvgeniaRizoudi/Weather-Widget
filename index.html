@@ -18,11 +18,10 @@
 </head>
 
 <body>
-
     <!-- Current Temperature Card -->
 
-    <div class="row">
-        <div id="temperature-card" class=" card col-md-4 padding mLeft">
+    <div class="row d-flex flex-column">
+        <div id="temperature-card" class=" card col-md-4 padding mTop align-self-center mt-2">
             <div class="location-date">
                 <h1 id="location" class="text-style padding font-comfortaa card-title">Thessaloniki</h1>
                 <p class="date text-style card-subtitle"></p>
@@ -41,10 +40,10 @@
                     data-bs-target="#weather-det" aria-expanded="false" aria-controls="weather-det">Details</button>
             </div>
         </div>
-
         <!-- Current Weather Details -->
 
-        <div id="weather-det" class="weather-details-card text-style col-md-4 card padding collapse">
+        <div id="weather-det"
+            class="weather-details-card text-style mTop col-md-4 card padding collapse align-self-center mt-2">
             <img class="weather-img padding " src="" alt="current weather image">
             <ul class="list-style">
                 <li class="humidity card-text"></li>
@@ -53,27 +52,25 @@
                 <li class="wind-sp card-text"></li>
                 <li class="wind-deg card-text"></li>
             </ul>
-
             <!-- Next Dates Buttons -->
 
         </div>
-        <div class="collapse collapse-item" id="date-list">
-            <div class="card card-body">
+        <div class="collapse collapse-item mt-2" id="date-list">
+            <div class="card card-body col-md-4 align-self-center btnList">
                 <div class="btn-group-sm" role="group">
-                    <button type="button" class="dateBtn1 btn btn-secondary"></button>
-                    <button type="button" class="dateBtn2 btn btn-secondary"></button>
-                    <button type="button" class="dateBtn3 btn btn-secondary"></button>
-                    <button type="button" class="dateBtn4 btn btn-secondary"></button>
-                    <button type="button" class="dateBtn5 btn btn-secondary"></button>
-                    <button type="button" class="dateBtn6 btn btn-secondary"></button>
-                    <button type="button" class="dateBtn7 btn btn-secondary"></button>
+                    <button type="button" class="dateBtn1 btn btn-light mt-2"></button>
+                    <button type="button" class="dateBtn2 btn btn-light mt-2"></button>
+                    <button type="button" class="dateBtn3 btn btn-light mt-2"></button>
+                    <button type="button" class="dateBtn4 btn btn-light mt-2"></button>
+                    <button type="button" class="dateBtn5 btn btn-light mt-2"></button>
+                    <button type="button" class="dateBtn6 btn btn-light mt-2"></button>
+                    <button type="button" class="dateBtn7 btn btn-light mt-2"></button>
                 </div>
             </div>
         </div>
-
         <!-- Forecast Info -->
 
-        <div class="forecast-info text-style col-md-4 card padding mLeft">
+        <div class="forecast-info text-style col-md-4 card padding align-self-center mt-2">
             <img class="forecast-img padding " src="" alt="forecast weather image">
             <ul class="list-style">
                 <li class="temperature-forecast card-text"></li>
@@ -84,15 +81,14 @@
                 <li class="wind-sp-forecast card-text"></li>
                 <li class="wind-deg-forecast card-text"></li>
             </ul>
-            <button type="button" class="btn btn-secondary go-back-btn">Go back</button>
+            <button type="button" class="btn btn-light go-back-btn">Go back</button>
         </div>
     </div>
     </div>
-
     <!-- Max Temperature Chart -->
 
-    <div class="row">
-        <div class="collapse card chart-card col-md-4 mLeft" id="chart">
+    <div class="row justify-content-center">
+        <div class="collapse card chart-card col-md-4 mt-2" id="chart">
             <canvas id="maxTempChart" width="100" height="50"></canvas>
         </div>
     </div>
