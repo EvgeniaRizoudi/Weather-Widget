@@ -75,7 +75,7 @@ html body{
     align-items: center;
     font-size: 1.4rem;
     text-shadow: 1px 1px #000000;
-    background-color: #411530;
+    background-color: #702b56;
 }
 
 /* Forecast Card */
@@ -86,13 +86,13 @@ html body{
     align-items: center;
     font-size: 1.4rem;
     text-shadow: 1px 1px #000000;
-    background-color: #411530;
+    background-color: #702b56;
 }
 
 /* Max Temperature Chart */
 
 #maxTempChart {
-    background-color: #411530;
+    background-color: #702b56;
     border-radius: 1%;
 }
 

@@ -11,7 +11,7 @@ A fully functional weather widget using data from an API.
 ---
 ## Preview
 
-![Widget Preview](img/widgetPreview.PNG)![Widget Preview](img/widgetPreview2.PNG)
+![Widget Preview](img/widgetPreview.PNG)
 
 <b>⚠️One can only use the widget if they provide the correct API key⚠️</b>
 
