@@ -1,14 +1,9 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+
+html body{
+    background-color: #94B49F ;
+}   
 
 /* Main styling classes */
-
-.mLeft {
-    margin-left: 2%;
-}
 
 .text-style {
     text-align: center;
@@ -80,7 +75,7 @@
     align-items: center;
     font-size: 1.4rem;
     text-shadow: 1px 1px #000000;
-    background-color: #6ca4be;
+    background-color: #411530;
 }
 
 /* Forecast Card */
@@ -91,12 +86,24 @@
     align-items: center;
     font-size: 1.4rem;
     text-shadow: 1px 1px #000000;
-    background-color: #6ca4be;
+    background-color: #411530;
 }
 
 /* Max Temperature Chart */
 
 #maxTempChart {
-    background-color: #6ca4be;
+    background-color: #411530;
     border-radius: 1%;
+}
+
+#chart{
+    background-color: transparent;
+    border: none;
+}
+
+#date-list > .btnList{
+    margin: 0 auto;
+    text-align: center;
+    background-color: transparent;
+    border: none;
 }
