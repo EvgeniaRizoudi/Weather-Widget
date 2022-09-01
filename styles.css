@@ -1,7 +1,13 @@
 
 html body{
-    background-color: #94B49F ;
-}   
+    background-color: #bdd0c3 ;
+}  
+
+.projectTitle{
+    text-align: center;
+    color: #E8F9FD;
+    font-family: 'Barlow', sans-serif;
+}
 
 /* Main styling classes */
 
@@ -15,11 +21,21 @@ html body{
     font-family: 'Comfortaa', cursive;
 }
 
+.transparent{
+    background-color: transparent;
+}
+
 /* Temperature Card */
 
 .row > #temperature-card {
     background-size: cover;
-    border-radius: 15%;
+}
+
+#temperature-card > .card-header{
+    text-align: center;
+    color: #E8F9FD;
+    text-shadow: 1px 1px black;
+    font-weight: bold;
 }
 
 #location {
@@ -59,8 +75,10 @@ html body{
     text-emphasis-color: black;
 }
 
-.card-footer {
+.card> .card-footer {
     text-align: center;
+    background-color:transparent;
+    border: none;
 }
 
 /* Weather Details Card */
@@ -70,7 +88,6 @@ html body{
 }
 
 .row > .weather-details-card {
-    border-radius: 15%;
     text-align: start;
     align-items: center;
     font-size: 1.4rem;
@@ -81,7 +98,6 @@ html body{
 /* Forecast Card */
 
 .row > .forecast-info {
-    border-radius: 15%;
     text-align: start;
     align-items: center;
     font-size: 1.4rem;
@@ -91,14 +107,11 @@ html body{
 
 /* Max Temperature Chart */
 
-#maxTempChart {
-    background-color: #702b56;
-    border-radius: 1%;
-}
-
 #chart{
-    background-color: transparent;
+    background-color:  #702b56;;
     border: none;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 #date-list > .btnList{
@@ -106,4 +119,13 @@ html body{
     text-align: center;
     background-color: transparent;
     border: none;
+}
+
+.card > .card-header{
+background-color: transparent;
+text-shadow: 2px 1px #0e0d0e ;
+border: none;
+text-align: center;
+color: #E8F9FD;
+font-size: 1.4rem;
 }

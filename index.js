@@ -80,7 +80,6 @@ function maxTempChart(dates) {
             ],
             datasets: [
                 {
-                    label: 'Max Temperature',
                     data: [
                         (Math.round(dates[0].temp.max)),
                         (Math.round(dates[1].temp.max)),
@@ -96,6 +95,24 @@ function maxTempChart(dates) {
             ]
         },
         options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Max Temperature Chart',
+                    padding: {
+                        top:5,
+                        bottom: 2
+                    },
+                    align: 'center',
+                    color: 'rgba(251, 251, 251)',
+                    position:'top',
+                    font:{
+                        family: "'Comfortaa', cursive",
+                        size: 22, 
+                        weight: 'lighter'
+                    }
+                }
+            },
             scales: {
                 y: {
                     ticks: {
@@ -128,8 +145,10 @@ $(".forecast-info").hide();
 /* Turns the user back to the main card, closing all the other open cards*/
 $(".go-back-btn").click(function () {
     $(".collapse-item").collapse('toggle');
+    $(".weather-details-card").collapse('toggle');
+    $("#temperature-card").show();  
+    $(".projectTitle").show();
     $(".forecast-info").hide();
-    $("#temperature-card").show();
 })
 
 /* Displays the card with the current weather details*/
@@ -138,13 +157,12 @@ $(".details").click(function () {
 })
 
 /* Displays the forecast for the corresponding date,
- closing all the other open cards, 
- except for the one with the other dates*/
+ closing the current temperature and the weather-details cards*/
 $('*[class^="dateBtn"]').click(function () {
     $(".weather-details-card").hide();
     $("#temperature-card").hide();
     $(".forecast-info").show();
-    $("#maxTempChart").hide();
+    $(".projectTitle").hide();
 })
 
 /* Displays the chart card*/

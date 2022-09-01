@@ -11,6 +11,7 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,10 +19,15 @@
 </head>
 
 <body>
+    <h1 class="projectTitle">Weather Widget</h1>
     <!-- Current Temperature Card -->
 
     <div class="row d-flex flex-column">
-        <div id="temperature-card" class=" card col-md-4 padding mTop align-self-center mt-2">
+        <div id="temperature-card" class=" card col-md-4 padding align-self-center mt-2">
+            <div class="card-header font-comfortaa">
+                Current Temperature
+            </div>
+            <hr>
             <div class="location-date">
                 <h1 id="location" class="text-style padding font-comfortaa card-title">Thessaloniki</h1>
                 <p class="date text-style card-subtitle"></p>
@@ -31,21 +37,25 @@
                 <p class="celcious text-style card-text">℃</p>
             </div>
             <p class="temp-feeling text-style"></p>
+            <hr>
             <div class="card-footer">
                 <button type="button" class="btn btn-light" data-bs-toggle="collapse" data-bs-target="#date-list"
-                    aria-expanded="false" aria-controls="date-list">Next Days</button>
+                    aria-expanded="false" aria-controls="date-list"><i class="bi bi-calendar-week"></i></button>
                 <button type="button" class="btn btn-light chart-btn" data-bs-toggle="collapse"
-                    data-bs-target=".chart-card" aria-expanded="false" aria-controls="chart-card">Chart</button>
+                    data-bs-target=".chart-card" aria-expanded="false" aria-controls="chart-card"><i
+                        class="bi bi-graph-up"></i></button>
                 <button type="button" class="btn btn-light details" data-bs-toggle="collapse"
-                    data-bs-target="#weather-det" aria-expanded="false" aria-controls="weather-det">Details</button>
+                    data-bs-target="#weather-det" aria-expanded="false" aria-controls="weather-det"><i
+                        class="bi bi-plus"></i></button>
             </div>
         </div>
         <!-- Current Weather Details -->
 
         <div id="weather-det"
-            class="weather-details-card text-style mTop col-md-4 card padding collapse align-self-center mt-2">
+            class="weather-details-card text-style col-md-4 card padding collapse align-self-center mt-2">
+            <div class="card-header text-style font-comfortaa">Current Weather Details</div>
             <img class="weather-img padding " src="" alt="current weather image">
-            <ul class="list-style">
+            <ul class="list-style font-comfortaa">
                 <li class="humidity card-text"></li>
                 <li class="pressure card-text"></li>
                 <li class="clouds card-text"></li>
@@ -56,8 +66,10 @@
 
         </div>
         <div class="collapse collapse-item mt-2" id="date-list">
-            <div class="card card-body col-md-4 align-self-center btnList">
-                <div class="btn-group-sm" role="group">
+            <div class="card card-body align-self-center btnList col-md-4">
+                <div class="card-header font-comfortaa">Next Dates</div>
+                <hr>
+                <div class="btn-group-sm card-body" role="group">
                     <button type="button" class="dateBtn1 btn btn-light mt-2"></button>
                     <button type="button" class="dateBtn2 btn btn-light mt-2"></button>
                     <button type="button" class="dateBtn3 btn btn-light mt-2"></button>
@@ -71,8 +83,9 @@
         <!-- Forecast Info -->
 
         <div class="forecast-info text-style col-md-4 card padding align-self-center mt-2">
+            <div class="card-header text-style font-comfortaa">Forecast Details</div>
             <img class="forecast-img padding " src="" alt="forecast weather image">
-            <ul class="list-style">
+            <ul class="list-style font-comfortaa">
                 <li class="temperature-forecast card-text"></li>
                 <li class="feelsLike-forecast card-text"></li>
                 <li class="humidity-forecast card-text"></li>
@@ -81,15 +94,16 @@
                 <li class="wind-sp-forecast card-text"></li>
                 <li class="wind-deg-forecast card-text"></li>
             </ul>
-            <button type="button" class="btn btn-light go-back-btn">Go back</button>
+            <button type="button" class="btn btn-light go-back-btn"><i class="bi bi-arrow-return-left"></i></button>
         </div>
     </div>
     </div>
     <!-- Max Temperature Chart -->
 
     <div class="row justify-content-center">
-        <div class="collapse card chart-card col-md-4 mt-2" id="chart">
-            <canvas id="maxTempChart" width="100" height="50"></canvas>
+        <div class="collapse card chart-card col-md-4 mt-2 mb-2" id="chart">
+            <!--    <div class="card-header text-style">Max Temperature chart</div> -->
+            <canvas id="maxTempChart" width="300" height="180"></canvas>
         </div>
     </div>
 
