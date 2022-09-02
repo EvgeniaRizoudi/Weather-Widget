@@ -7,7 +7,9 @@ A fully functional weather widget using data from an API.
 * Current weather details
 * Seven days forecast
 * Seven days max temperature chart 
- 
+
+I imagined this widget as a "weather wallet", that you "open" its pockets, to find the information you need each time.
+
 ---
 ## Preview
 
