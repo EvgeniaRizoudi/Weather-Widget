@@ -23,7 +23,7 @@
     <!-- Current Temperature Card -->
 
     <div class="row d-flex flex-column">
-        <div id="temperature-card" class=" card col-md-4 padding align-self-center mt-2">
+        <div id="temperature-card" class="card col-md-4 padding align-self-center mt-2">
             <div class="card-header font-comfortaa">
                 Current Temperature
             </div>
@@ -40,20 +40,26 @@
             <hr>
             <div class="card-footer">
                 <button type="button" class="btn btn-light" data-bs-toggle="collapse" data-bs-target="#date-list"
-                    aria-expanded="false" aria-controls="date-list"><i class="bi bi-calendar-week"></i></button>
+                    aria-expanded="false" aria-controls="date-list">
+                    <i class="bi bi-calendar-week"></i>
+                </button>
                 <button type="button" class="btn btn-light chart-btn" data-bs-toggle="collapse"
-                    data-bs-target=".chart-card" aria-expanded="false" aria-controls="chart-card"><i
-                        class="bi bi-graph-up"></i></button>
+                    data-bs-target=".chart-card" aria-expanded="false" aria-controls="chart-card">
+                    <i class="bi bi-graph-up"></i>
+                </button>
                 <button type="button" class="btn btn-light details" data-bs-toggle="collapse"
-                    data-bs-target="#weather-det" aria-expanded="false" aria-controls="weather-det"><i
-                        class="bi bi-plus"></i></button>
+                    data-bs-target="#weather-det" aria-expanded="false" aria-controls="weather-det">
+                    <i class="bi bi-plus"></i>
+                </button>
             </div>
         </div>
         <!-- Current Weather Details -->
 
         <div id="weather-det"
             class="weather-details-card text-style col-md-4 card padding collapse align-self-center mt-2">
-            <div class="card-header text-style font-comfortaa">Current Weather Details</div>
+            <div class="card-header text-style font-comfortaa">
+                Current Weather Details
+            </div>
             <img class="weather-img padding " src="" alt="current weather image">
             <ul class="list-style font-comfortaa">
                 <li class="humidity card-text"></li>
@@ -67,7 +73,9 @@
         </div>
         <div class="collapse collapse-item mt-2" id="date-list">
             <div class="card card-body align-self-center btnList col-md-4">
-                <div class="card-header font-comfortaa">Next Dates</div>
+                <div class="card-header font-comfortaa">
+                    Next Dates
+                </div>
                 <hr>
                 <div class="btn-group-sm card-body" role="group">
                     <button type="button" class="dateBtn1 btn btn-light mt-2"></button>
@@ -83,8 +91,10 @@
         <!-- Forecast Info -->
 
         <div class="forecast-info text-style col-md-4 card padding align-self-center mt-2">
-            <div class="card-header text-style font-comfortaa">Forecast Details</div>
-            <img class="forecast-img padding " src="" alt="forecast weather image">
+            <div class="card-header text-style font-comfortaa">
+                Forecast Details
+            </div>
+            <img class="forecast-img padding" src="" alt="forecast weather image">
             <ul class="list-style font-comfortaa">
                 <li class="temperature-forecast card-text"></li>
                 <li class="feelsLike-forecast card-text"></li>
@@ -94,7 +104,9 @@
                 <li class="wind-sp-forecast card-text"></li>
                 <li class="wind-deg-forecast card-text"></li>
             </ul>
-            <button type="button" class="btn btn-light go-back-btn"><i class="bi bi-arrow-return-left"></i></button>
+            <button type="button" class="btn btn-light go-back-btn">
+                <i class="bi bi-arrow-return-left"></i>
+            </button>
         </div>
     </div>
     </div>
