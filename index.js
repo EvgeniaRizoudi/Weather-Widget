@@ -142,7 +142,7 @@ function maxTempChart(dates) {
 /* Calling All: Invoking all the functions needed to run the widget*/
 $(".forecast-info").hide();
 
-/* Turns the user back to the main card, closing all the other open cards*/
+/* Turns the user back to the main card*/
 $(".go-back-btn").click(function () {
     $(".collapse-item").collapse('toggle');
     $(".weather-details-card").collapse('toggle');
