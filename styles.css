@@ -1,4 +1,3 @@
-
 html body{
     background-color: #bdd0c3 ;
 }  
@@ -8,7 +7,6 @@ html body{
     color: #E8F9FD;
     font-family: 'Barlow', sans-serif;
 }
-
 /* Main styling classes */
 
 .text-style {
@@ -25,6 +23,14 @@ html body{
     background-color: transparent;
 }
 
+.card > .card-header{
+    background-color: transparent;
+    text-shadow: 2px 1px #0e0d0e ;
+    border: none;
+    text-align: center;
+    color: #E8F9FD;
+    font-size: 1.4rem;
+}
 /* Temperature Card */
 
 .row > #temperature-card {
@@ -80,7 +86,6 @@ html body{
     background-color:transparent;
     border: none;
 }
-
 /* Weather Details Card */
 
 .list-style {
@@ -94,7 +99,14 @@ html body{
     text-shadow: 1px 1px #000000;
     background-color: #702b56;
 }
+/* Date Buttons */
 
+#date-list > .btnList{
+    margin: 0 auto;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+}
 /* Forecast Card */
 
 .row > .forecast-info {
@@ -104,7 +116,6 @@ html body{
     text-shadow: 1px 1px #000000;
     background-color: #702b56;
 }
-
 /* Max Temperature Chart */
 
 #chart{
@@ -114,18 +125,6 @@ html body{
     padding-right: 12px;
 }
 
-#date-list > .btnList{
-    margin: 0 auto;
-    text-align: center;
-    background-color: transparent;
-    border: none;
-}
 
-.card > .card-header{
-background-color: transparent;
-text-shadow: 2px 1px #0e0d0e ;
-border: none;
-text-align: center;
-color: #E8F9FD;
-font-size: 1.4rem;
-}
+
+
